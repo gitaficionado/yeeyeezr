@@ -1,0 +1,52 @@
+//Declare any variables shared between functions here
+float attitude [2];
+bool y;
+float x [4];
+int counter; 
+float xxx [12];
+int z;
+float position1 [2];
+
+void init(){
+	//This function is called once when your code is first loaded.
+	
+	counter=0;
+	attitude [0]=-1;
+	attitude [1]=0;
+	attitude [2]=0;
+	x [0]=1;
+	position1 [0]=4;
+	position1 [1]=5;
+	position1 [2]=0;
+	//IMPORTANT: make sure to set any variables that need an initial value.
+	//Do not assume variables will be set to 0 automatically!
+}
+
+void loop(){
+	//This function is called once per second.  Use it to control the satellite.
+	
+	api.getMyZRState(xxx);
+	game.checkSample();
+	
+	if (counter=0) {
+	    api.setPositionTarget (position1);
+	}
+	if (xxx[0]=4 and xxx[1]=5 and counter=0) {
+	    counter++;
+	}
+	
+	if (counter=1) {
+	game.startDrill();
+	counter++;
+	}
+	
+	if (counter=2) {
+	api.setAttitudeTarget (attitude);
+	}
+	
+	
+	if (counter=7) {
+	    game.pickupSample();
+	}
+
+}
